@@ -51,7 +51,7 @@ bun add github:stsgs1980/GuidedTour
 
 ```tsx
 import { useRef, useState, useEffect } from "react";
-import { GuidedTour, type TourStep, type GuidedTourRef } from "@/lib/guided-tour/src";
+import { GuidedTour, type TourStep, type GuidedTourRef } from "@/lib/guided-tour";
 
 const steps: TourStep[] = [
   { target: "#hero", title: "Welcome", description: "This is your dashboard.", position: "bottom" },
@@ -142,7 +142,7 @@ interface TourStep {
 
 ### Custom Theme
 ```tsx
-import type { GuidedTourTheme } from "@/lib/guided-tour/src";
+import type { GuidedTourTheme } from "@/lib/guided-tour";
 
 const myTheme: GuidedTourTheme = {
   tooltipBg: "#1e293b",
@@ -171,6 +171,86 @@ const myTheme: GuidedTourTheme = {
   }}
 />
 ```
+
+## Updating GuidedTour
+
+When a new version is released in this repository, update it in all projects that use it as a submodule.
+
+### Quick Update (one command)
+
+```bash
+# From the root of your project:
+git submodule update --remote src/lib/guided-tour
+```
+
+### Full Update (pull latest + commit)
+
+```bash
+# 1. Pull latest changes from GuidedTour upstream
+git submodule update --remote src/lib/guided-tour
+
+# 2. See what changed
+git diff src/lib/guided-tour
+
+# 3. Stage and commit
+git add src/lib/guided-tour
+git commit -m "chore: update GuidedTour to latest"
+
+# 4. Push
+git push
+```
+
+### Update Across All Projects at Once
+
+```bash
+# Script: update-guided-tour.sh
+# Run from any project root that has GuidedTour as submodule
+
+echo "Updating GuidedTour submodule..."
+git submodule update --remote src/lib/guided-tour
+
+NEW=$(git -C src/lib/guided-tour log -1 --format="%h %s")
+echo "Updated to: $NEW"
+
+git add src/lib/guided-tour
+git commit -m "chore: update GuidedTour ($NEW)"
+```
+
+### Check Current Version
+
+```bash
+# See which commit of GuidedTour your project is using
+git submodule status src/lib/guided-tour
+
+# See changelog since last update
+cd src/lib/guided-tour && git log --oneline HEAD..origin/main && cd -
+```
+
+### Rollback if Something Breaks
+
+```bash
+# Pin to specific commit
+cd src/lib/guided-tour
+git checkout <commit-hash>
+cd ..
+git add src/lib/guided-tour
+git commit -m "chore: pin GuidedTour to <commit-hash>"
+```
+
+### Changelog Format
+
+This repository uses [Conventional Commits](https://www.conventionalcommits.org/):
+
+| Prefix | Description |
+|---|---|
+| `feat:` | New feature (minor bump) |
+| `fix:` | Bug fix (patch bump) |
+| `docs:` | Documentation only |
+| `chore:` | Maintenance, deps |
+| `refactor:` | Code changes without new features |
+| `breaking:` | Breaking API change (major bump) |
+
+---
 
 ## Keyboard Navigation
 
