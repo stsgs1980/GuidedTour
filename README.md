@@ -29,13 +29,47 @@
 
 ## Install
 
+### Option 1: Git Submodule (recommended)
+
+**Add to an existing project:**
+
 ```bash
-# As git submodule (recommended for private / internal use)
+# From the root of your project:
 git submodule add https://github.com/stsgs1980/GuidedTour.git src/lib/guided-tour
 
-# Or directly from GitHub
-bun add github:stsgs1980/GuidedTour
+# Now import in your code:
+# import { GuidedTour } from "@/lib/guided-tour";
+
+# Commit the submodule reference:
+git add src/lib/guided-tour .gitmodules
+git commit -m "feat: add GuidedTour submodule"
 ```
+
+**Clone a project that already has GuidedTour as submodule:**
+
+```bash
+# IMPORTANT: without --recurse-submodules the submodule folder will be EMPTY
+# and imports from "@/lib/guided-tour" will fail
+git clone --recurse-submodules https://github.com/<user>/<project>.git
+
+# If you already cloned without the flag, run:
+cd <project>
+git submodule update --init --recursive
+```
+
+> **What is a submodule?** It's a git repository embedded inside another git repository.
+> The main project stores a *reference* (commit hash) to GuidedTour, not the code itself.
+> Think of it as `node_modules` but for git repos — you need an extra step to download the actual files.
+
+### Option 2: Direct from GitHub (no submodule)
+
+```bash
+bun add github:stsgs1980/GuidedTour
+# import from "guided-tour"
+```
+
+> **When to use:** one-off projects, quick prototyping.
+> **When NOT to use:** long-term projects where you want to control the version.
 
 ## Peer Dependencies
 
