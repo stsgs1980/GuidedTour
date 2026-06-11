@@ -1,8 +1,19 @@
-# GuidedTour
+<h1 align="center">GuidedTour</h1>
 
-Zero-dependency (except `react` + `framer-motion`) guided tour / onboarding component for React.
+<p align="center">
+  Zero-dependency guided tour component for React.<br/>
+  <strong>No Tailwind. No CSS files. Works everywhere.</strong>
+</p>
 
-**No Tailwind. No CSS files to import. Works everywhere.**
+<p align="center">
+  <img src="https://img.shields.io/badge/react-%3E%3D18-blue?logo=react" alt="React >=18" />
+  <img src="https://img.shields.io/badge/framer--motion-%3E%3D11-purple?logo=framer" alt="framer-motion >=11" />
+  <img src="https://img.shields.io/badge/typescript-5.x-3178c6?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License" />
+  <img src="https://img.shields.io/badge/zero_tailwind-no Dependencies-important" alt="No Tailwind" />
+</p>
+
+---
 
 ## Features
 
